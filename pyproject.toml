@@ -1,0 +1,23 @@
+[tool.poetry]
+authors = ["enesalsat <e.alsat@digitastic.app>"]
+description = ""
+name = "projify"
+readme = "README.md"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+autoflake = "^2.1.1"
+black = "^23.3.0"
+ipython = "^8.13.2"
+isort = "^5.12.0"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
+
+#script that runs main func in __init__.py
+[tool.poetry.scripts]
+projify = "projify:main"

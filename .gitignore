@@ -1,0 +1,14 @@
+# secret files
+**/.secret
+
+# vscode
+.vscode
+
+#python
+**/__pycache__/
+
+#virtualenv
+.venv/
+
+#mac files
+.DS_Store

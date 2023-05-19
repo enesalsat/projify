@@ -1,0 +1,9 @@
+
+FROM base-image
+
+RUN pip3 install poetry
+COPY pyproject.toml /home/user/pyproject.toml
+COPY poetry.lock /home/user/poetry.lock
+RUN poetry install
+
+ENTRYPOINT [ "bash" ]
