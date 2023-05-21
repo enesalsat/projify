@@ -8,7 +8,7 @@ from pathlib import Path
 class Template:
     """template directory paths"""
 
-    base: Path = Path(__file__).parent / "template"
+    base: Path = Path(__file__).parent.parent / "template"
     dockerfile: Path = base / "dockerfile"
     makefile: Path = base / "makefile"
     config: Path = base / "config"

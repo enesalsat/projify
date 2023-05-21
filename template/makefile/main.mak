@@ -19,36 +19,6 @@ clear clean: ## Clean up
 	@find . -name "__pycache__" -exec rm -rf {} +
 	@clear
 
-install: ## Install dependencies
-	@echo "Installing dependencies..."
-	@poetry config virtualenvs.in-project true
-	@poetry install
-
-format: ## Run format(black, isort, autoflake, djlint)
-	@poetry run autoflake --in-place --remove-all-unused-imports --recursive \
-		--remove-unused-variables --ignore-init-module-imports .
-	@poetry run isort .
-	@poetry run black .
-
-lint: ## Run lint
-	@poetry run pylint $(PROJECT_NAME)
-
-type-check: ## Run tests (mypy)
-	@poetry run mypy .
-
-ipython: ## Run ipython in poetry env
-	@poetry run ipython
-
-update: ## Update dependencies
-	@echo "Updating dependencies..."
-	@poetry update
-
-test: clear format lint type-check ## Run all tests(format, lint, mypy)
-	@echo "All tests passed!"
-
-env: ## Activate poetry shell
-	@poetry shell
-
 git: ## Git add, commit, push
 	@read -p "Enter commit message: " message &&\
 		git add . && git commit -m "$$message";
@@ -58,4 +28,3 @@ merge: compile ## Merge develop to main(master) #TODO for index update
 	@git checkout $(INITIAL_BRANCH_NAME) && git pull origin $(INITIAL_BRANCH_NAME) &&\
 		git merge $(DEV_BRANCH_NAME) && git push origin $(INITIAL_BRANCH_NAME) &&\
 		git checkout $(DEV_BRANCH_NAME) && git pull origin $(DEV_BRANCH_NAME)
-

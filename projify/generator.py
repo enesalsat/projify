@@ -41,6 +41,35 @@ def __generate_makefile(prj_name: str):
         makefile.write(_text)
 
 
+def __generate_python_modules(prj_name: str):
+    """creates src/`prj_name` and tests/`prj_name` directories
+
+    Args:
+        prj_name (str): project name
+    """
+    # TODO project-name should be snake_case
+
+    # create src/`prj_name` directory
+    Path(f"{prj_name}/src/{prj_name}").mkdir(parents=True)
+
+    # create tests/`prj_name` directory
+    Path(f"{prj_name}/tests/{prj_name}").mkdir(parents=True)
+
+    # copy Template.python_module's contents to src/`prj_name`
+    for file in Template.python_module.iterdir():
+        with open(
+            f"{prj_name}/src/{prj_name}/{file.name}", "w", encoding="utf-8"
+        ) as python_module:
+            python_module.write(file.read_text())
+
+    # copy Template.python_module's contents to tests/`prj_name`
+    for file in Template.python_module.iterdir():
+        with open(
+            f"{prj_name}/tests/{prj_name}/{file.name}", "w", encoding="utf-8"
+        ) as python_module:
+            python_module.write(file.read_text())
+
+
 def generate(prj_name: str):
     """generate project files"""
 
